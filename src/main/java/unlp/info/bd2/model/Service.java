@@ -1,14 +1,23 @@
 package unlp.info.bd2.model;
 
+import jakarta.annotation.Generated;
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Service {
 
+    @Id
+    @GeneratedValue()
     private Long id;
 
+    @Column(nullable = false, length = 100, unique = true)
     private String name;
 
+    @Column(nullable = false)
     private float price;
 
     private String description;
@@ -50,6 +59,7 @@ public class Service {
         this.description = description;
     }
 
+    @OneToMany(mappedBy = "service")
     public List<ItemService> getItemServiceList() {
         return itemServiceList;
     }

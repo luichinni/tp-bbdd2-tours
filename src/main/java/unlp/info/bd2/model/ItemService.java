@@ -1,14 +1,19 @@
 package unlp.info.bd2.model;
 
+import jakarta.persistence.*;
 
+@Entity
 public class ItemService {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     private int quantity;
 
     private Purchase purchase;
 
+    // en el lado de Service, al poner mappedBy pongo el nombre de esta var de instancia
     private Service service;
 
     public Long getId() {
@@ -36,6 +41,8 @@ public class ItemService {
         this.purchase = purchase;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "service_fk")
     public Service getService() {
         return service;
     }
