@@ -1,12 +1,17 @@
 package unlp.info.bd2.model;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Route {
 
+    @Id
     private Long id;
 
+    @Column(length = 100)
     private String name;
 
     private float price;
@@ -69,6 +74,12 @@ public class Route {
         this.stops = stops;
     }
 
+    @ManyToMany
+    @JoinTable(
+            name="ROUTE_USERDRIVER",
+            joinColumns=@JoinColumn(name="ROUTE_ID"),
+            inverseJoinColumns=@JoinColumn(name="USERDRIVER_ID")
+    )
     public List<DriverUser> getDriverList() {
         return driverList;
     }
@@ -77,6 +88,12 @@ public class Route {
         this.driverList = driverList;
     }
 
+    @ManyToMany
+    @JoinTable(
+            name="ROUTE_TOURGUIDE",
+            joinColumns=@JoinColumn(name="ROUTE_ID"),
+            inverseJoinColumns=@JoinColumn(name="TOURGUIDE_ID")
+    )
     public List<TourGuideUser> getTourGuideList() {
         return tourGuideList;
     }

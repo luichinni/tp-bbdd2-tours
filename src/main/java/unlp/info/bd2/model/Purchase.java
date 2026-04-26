@@ -1,5 +1,7 @@
 package unlp.info.bd2.model;
 
+import jakarta.persistence.OneToOne;
+
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +22,6 @@ public class Purchase {
     private Review review;
 
     private List<ItemService> itemServiceList;
-
 
 
     public Long getId() {
@@ -71,6 +72,7 @@ public class Purchase {
         this.route = route;
     }
 
+    @OneToOne(optional = false)
     public Review getReview() {
         return review;
     }

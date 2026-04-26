@@ -1,6 +1,8 @@
 package unlp.info.bd2.model;
 
 
+import jakarta.persistence.OneToOne;
+
 public class Review {
 
     private Long id;
@@ -36,6 +38,7 @@ public class Review {
         this.comment = comment;
     }
 
+    @OneToOne(optional = true)
     public Purchase getPurchase() {
         return purchase;
     }
